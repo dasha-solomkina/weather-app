@@ -49,11 +49,12 @@ async function getForcast(city) {
     w.is_day,
     w.condition.code
   );
+  console.log(forecast);
   render(forecast);
   //return forecast;
 }
 
-// getForcast(city);
+getForcast(city);
 
 // TODO: error handeling
 
@@ -70,19 +71,47 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
+let metrics = 0; // by default C = 0
+
 function render(obj) {
   const back = document.querySelector('body');
-  const iconSpace = document.querySelector('#icon');
-  const icon = document.createElement('img');
-  iconSpace.appendChild(icon);
+  const icon = document.querySelector('#icon');
 
   if (obj.is_day === 1) {
     back.style.backgroundImage = "url('day2.jpg')";
     back.style.color = 'black';
     icon.src = `./day/${obj.condition_code}.png`;
-  } else {
+  } else if (obj.is_day === 0) {
     back.style.backgroundImage = "url('night1.jpg')";
     back.style.color = 'white';
     icon.src = `./night/${obj.condition_code}.png`;
   }
+
+  const city = document.querySelector('#city');
+  const country = document.querySelector('#country');
+  city.textContent = obj.city;
+  country.textContent = obj.country;
+
+  const temp = document.querySelector('#temp');
+  const degree = document.querySelectorAll('.degree');
+  const feels = document.querySelector('#tempFeels');
+  const wind = document.querySelector('#wind');
+  const wmeasure = document.querySelector('#measure');
+
+  if (metrics === 0) {
+    temp.textContent = obj.temp_c;
+    feels.textContent = obj.feelslike_c;
+    wind.textContent = obj.wind_kph;
+    wmeasure.textContent = 'kph';
+    degree.forEach((one) => (one.textContent = '°C'));
+  } else if (metrics === 1) {
+    temp.textContent = obj.temp_f;
+    feels.textContent = obj.feelslike_f;
+    wind.textContent = obj.wind_mph;
+    wmeasure.textContent = 'mph';
+    degree.forEach((one) => (one.textContent = '°F'));
+  }
+
+  const humidity = document.querySelector('#humidity');
+  humidity.textContent = obj.humidity;
 }
