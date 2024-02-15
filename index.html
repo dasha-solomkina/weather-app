@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./day/1063.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <form id="myForm">
+        <input id="search" type="text" placeholder="Search City" />
+      </form>
+    </div>
+    <div class="main">
+      <div class="wrap">
+        <div id="region">
+          <span id="icon"></span>
+          <p id="location">
+            <span id="city">Florianopolis</span>,
+            <span id="country">Brazil</span>
+          </p>
+        </div>
+        <div class="info">
+          <div>
+            <p id="temp">22</p>
+            <p class="degree first">°C</p>
+          </div>
+          <div class="secondary">
+            <p class="secondaryLines">
+              Feels like: <span id="tempFeels">20</span
+              ><span class="degree">°C</span>
+            </p>
+            <p class="secondaryLines">
+              Wind: <span id="wind">11</span><span class="measure">KPH</span>
+            </p>
+            <p class="secondaryLines">
+              Humidity: <span id="humidity">80</span> %
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      designed by
+      <a href="https://github.com/dasha-solomkina/" target="_blank"
+        >@dasha-solomkina</a
+      >
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
