@@ -74,10 +74,7 @@ setTimeout(function () {
   console.log('This message will appear after 2 seconds.');
 }, 2000);
 
-// TODO: error handeling
-
 // interactions
-
 const form = document.querySelector('#myForm');
 
 form.addEventListener('submit', (e) => {
@@ -93,7 +90,7 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
-let metrics = 0; // by default C
+let metrics = 0; // by default C and KM
 
 const switcher = document.querySelector('.switcher');
 const c = document.querySelector('#c');
@@ -159,6 +156,7 @@ function render(obj) {
   humidity.textContent = obj.humidity;
 }
 
+// default city
 getForcast(city)
   .then((forecast) => {
     cityData = forecast;
