@@ -37,7 +37,7 @@ async function getForcast(city) {
 
     const response = await fetch(url, { mode: 'cors' });
 
-    if (!response.ok) {
+    if (response.status === 400) {
       throw new Error('City not found or API request failed');
     }
     const data = await response.json();
