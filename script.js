@@ -32,7 +32,7 @@ let cityData = {};
 async function getForcast(city) {
   try {
     const url =
-      'http://api.weatherapi.com/v1/current.json?key=735a552fef314ecb892225301241302&q=' +
+      'https://api.weatherapi.com/v1/current.json?key=735a552fef314ecb892225301241302&q=' +
       String(city);
 
     const response = await fetch(url, { mode: 'cors' });
