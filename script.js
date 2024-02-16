@@ -31,9 +31,7 @@ let cityData = {};
 
 async function getForcast(city) {
   try {
-    const url =
-      'http://api.weatherapi.com/v1/current.json?key=735a552fef314ecb892225301241302&q=' +
-      String(city);
+    const url = `http://api.weatherapi.com/v1/forecast.json?key=1986480656ec490d950204923202611&q=${city}`;
 
     const response = await fetch(url, { mode: 'cors' });
 
@@ -70,9 +68,9 @@ async function showError(error) {
   message.textContent = '';
 }
 
-setTimeout(function () {
-  console.log('This message will appear after 2 seconds.');
-}, 2000);
+// setTimeout(function () {
+//   console.log('This message will appear after 2 seconds.');
+// }, 2000);
 
 // interactions
 const form = document.querySelector('#myForm');
