@@ -6,7 +6,7 @@
 
 body {
   display: grid;
-  grid-template-rows: 80px 1fr 50px;
+  grid-template-rows: 90px 1fr 50px;
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -15,15 +15,36 @@ body {
 .header {
   display: flex;
   justify-content: right;
-  align-items: end;
   margin-right: 100px;
+  padding-top: 20px;
+}
+
+#myForm {
+  height: 60px;
+  padding-top: 20px;
 }
 
 #search {
   background-color: white;
-  border: 1px solid #545454;
+  border: none;
   border-radius: 5px;
   padding: 6px 10px;
+  font-size: 16px;
+}
+
+#search::placeholder {
+  font-size: 16px;
+}
+
+#search:focus {
+  outline: none;
+  border: 1px solid #545454;
+}
+
+.error {
+  margin: 6px 10px;
+  font-size: 14px;
+  color: red;
 }
 
 .main {
@@ -71,6 +92,39 @@ body {
   gap: 5px;
 }
 
+.switcher {
+  background-color: white;
+  width: 58px;
+  height: 28px;
+  border-radius: 18px;
+  border: 1px solid #929497;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 2px;
+}
+
+.switcher:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  background-color: black;
+}
+
+#f,
+#c {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 18px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: black;
+}
+
 .footer {
   display: flex;
   justify-content: center;
@@ -85,5 +139,14 @@ a {
 
 a:hover {
   cursor: pointer;
-  color: #545454;
+}
+
+.secondaryLines {
+  display: flex;
+  gap: 4px;
+  font-weight: 600;
+}
+
+span {
+  font-weight: 400;
 }

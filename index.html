@@ -8,13 +8,19 @@
     <link rel="icon" href="./day/1063.png" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
     />
   </head>
   <body>
     <div class="header">
       <form id="myForm">
-        <input id="search" type="text" placeholder="Search City" />
+        <input
+          id="search"
+          type="text"
+          placeholder="Search City"
+          maxlength="40"
+        />
+        <p class="error"></p>
       </form>
     </div>
     <div class="main">
@@ -42,6 +48,12 @@
             <p class="secondaryLines">
               Humidity: <span id="humidity">80</span> %
             </p>
+          </div>
+        </div>
+        <div>
+          <div class="switcher">
+            <div id="c">C</div>
+            <div id="f" class="hidden">F</div>
           </div>
         </div>
       </div>

@@ -27,34 +27,52 @@ class Forecast {
 }
 
 let city = 'Florianopolis';
+let cityData = {};
 
 async function getForcast(city) {
-  const url =
-    'http://api.weatherapi.com/v1/current.json?key=735a552fef314ecb892225301241302&q=' +
-    String(city);
+  try {
+    const url =
+      'http://api.weatherapi.com/v1/current.json?key=735a552fef314ecb892225301241302&q=' +
+      String(city);
 
-  const response = await fetch(url, { mode: 'cors' });
-  const data = await response.json();
-  const w = data.current;
-  const forecast = new Forecast(
-    data.location.name,
-    data.location.country,
-    w.temp_c,
-    w.temp_f,
-    w.feelslike_c,
-    w.feelslike_f,
-    w.wind_kph,
-    w.wind_mph,
-    w.humidity,
-    w.is_day,
-    w.condition.code
-  );
-  console.log(forecast);
-  render(forecast);
-  //return forecast;
+    const response = await fetch(url, { mode: 'cors' });
+
+    if (!response.ok) {
+      throw new Error('City not found or API request failed');
+    }
+    const data = await response.json();
+    const w = data.current;
+    const forecast = new Forecast(
+      data.location.name,
+      data.location.country,
+      w.temp_c,
+      w.temp_f,
+      w.feelslike_c,
+      w.feelslike_f,
+      w.wind_kph,
+      w.wind_mph,
+      w.humidity,
+      w.is_day,
+      w.condition.code
+    );
+    return forecast;
+  } catch (err) {
+    console.log(err);
+    showError(err);
+    return null;
+  }
 }
 
-getForcast(city);
+async function showError(error) {
+  const message = document.querySelector('.error');
+  message.textContent = error;
+  await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+  message.textContent = '';
+}
+
+setTimeout(function () {
+  console.log('This message will appear after 2 seconds.');
+}, 2000);
 
 // TODO: error handeling
 
@@ -66,25 +84,50 @@ form.addEventListener('submit', (e) => {
   const input = document.querySelector('#search');
   e.preventDefault();
   city = input.value;
-  console.log(city);
-  getForcast(city);
+  getForcast(city)
+    .then((forecast) => {
+      cityData = forecast;
+      render(cityData);
+    })
+    .catch((err) => console.log(err));
   form.reset();
 });
 
-let metrics = 0; // by default C = 0
+let metrics = 0; // by default C
+
+const switcher = document.querySelector('.switcher');
+const c = document.querySelector('#c');
+const f = document.querySelector('#f');
+
+switcher.addEventListener('click', () => {
+  if (c.classList.contains('hidden')) {
+    c.classList.remove('hidden');
+    f.classList.add('hidden');
+    metrics = 0;
+    render(cityData);
+  } else {
+    f.classList.remove('hidden');
+    c.classList.add('hidden');
+    metrics = 1;
+    render(cityData);
+  }
+});
 
 function render(obj) {
   const back = document.querySelector('body');
   const icon = document.querySelector('#icon');
+  const link = document.querySelector('a');
 
   if (obj.is_day === 1) {
     back.style.backgroundImage = "url('day2.jpg')";
     back.style.color = 'black';
     icon.src = `./day/${obj.condition_code}.png`;
+    link.style.color = 'black';
   } else if (obj.is_day === 0) {
     back.style.backgroundImage = "url('night1.jpg')";
     back.style.color = 'white';
     icon.src = `./night/${obj.condition_code}.png`;
+    link.style.color = 'white';
   }
 
   const city = document.querySelector('#city');
@@ -115,3 +158,10 @@ function render(obj) {
   const humidity = document.querySelector('#humidity');
   humidity.textContent = obj.humidity;
 }
+
+getForcast(city)
+  .then((forecast) => {
+    cityData = forecast;
+    render(cityData);
+  })
+  .catch((err) => console.log(err));
