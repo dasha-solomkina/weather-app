@@ -26,19 +26,24 @@ class Forecast {
   }
 }
 
-let city = 'Florianopolis';
+let city = 'London';
 let cityData = {};
 
 async function getForcast(city) {
   try {
-    const url = `http://api.weatherapi.com/v1/forecast.json?key=1986480656ec490d950204923202611&q=${city}`;
+    const url =
+      'http://api.weatherapi.com/v1/current.json?key=735a552fef314ecb892225301241302&q=' +
+      String(city);
 
     const response = await fetch(url, { mode: 'cors' });
+    console.log(response);
 
     if (response.status === 400) {
       throw new Error('City not found or API request failed');
     }
     const data = await response.json();
+    console.log(data);
+
     const w = data.current;
     const forecast = new Forecast(
       data.location.name,
@@ -53,6 +58,7 @@ async function getForcast(city) {
       w.is_day,
       w.condition.code
     );
+    console.log(forecast);
     return forecast;
   } catch (err) {
     console.log(err);
@@ -67,10 +73,6 @@ async function showError(error) {
   await new Promise((resolve, reject) => setTimeout(resolve, 2000));
   message.textContent = '';
 }
-
-// setTimeout(function () {
-//   console.log('This message will appear after 2 seconds.');
-// }, 2000);
 
 // interactions
 const form = document.querySelector('#myForm');
