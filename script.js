@@ -36,14 +36,12 @@ async function getForcast(city) {
       String(city);
 
     const response = await fetch(url, { mode: 'cors' });
-    console.log(response);
 
     if (response.status === 400) {
       throw new Error('City not found or API request failed');
     }
-    const data = await response.json();
-    console.log(data);
 
+    const data = await response.json();
     const w = data.current;
     const forecast = new Forecast(
       data.location.name,
@@ -58,7 +56,6 @@ async function getForcast(city) {
       w.is_day,
       w.condition.code
     );
-    console.log(forecast);
     return forecast;
   } catch (err) {
     console.log(err);
