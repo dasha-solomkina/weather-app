@@ -45,3 +45,6 @@ yarn dev
 ## Live project
 
 Here you can access the project preview: [Weather App](https://dasha-solomkina.github.io/weather-app/).
+</br>
+
+<img src="https://github.com/user-attachments/assets/61a13606-49b4-471f-984b-fd0a4c8758c4" alt="image" width="500"/>
