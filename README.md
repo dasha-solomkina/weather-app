@@ -1,6 +1,8 @@
 # Weather App
 This project was created to demonstrate proficiency in using APIs and manipulating the DOM with JavaScript. The primary objective was to create a weather forecast site that allows users to search for a specific location and display weather data in Fahrenheit or Celsius. This project was completed as part of the course: [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-weather-app). The code was written independently, based on the concepts studied in the course.
 
+<img src="https://github.com/user-attachments/assets/61a13606-49b4-471f-984b-fd0a4c8758c4" alt="image" width="500"/>
+
 ## Key Features
 - **Search Location**: Allows users to search for weather data for a specific location.
 - **Temperature Toggle**: Users can toggle between displaying the temperature in Fahrenheit or Celsius.
@@ -45,6 +47,4 @@ yarn dev
 ## Live project
 
 Here you can access the project preview: [Weather App](https://dasha-solomkina.github.io/weather-app/).
-</br>
 
-<img src="https://github.com/user-attachments/assets/61a13606-49b4-471f-984b-fd0a4c8758c4" alt="image" width="500"/>
